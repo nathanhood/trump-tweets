@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Tweet;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Illuminate\Http\Response;
@@ -13,7 +12,6 @@ class TweetsController extends Controller
 {
 	public function show()
 	{
-		$tweets = new Collection();
 		$connection = new TwitterOAuth(env('CONSUMER_KEY'), env('CONSUMER_SECRET'), env('ACCESS_TOKEN'), env('ACCESS_TOKEN_SECRET'));
 		$results = $connection->get('statuses/user_timeline', ['screen_name' => 'realDonaldTrump']);
 
