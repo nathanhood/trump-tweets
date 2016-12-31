@@ -12,6 +12,8 @@ class TweetsController extends Controller
 {
 	public function show()
 	{
+		// TODO: Refresh tweets every hour and extract from this endpoint so we don't hit API rate limit
+
 		$connection = new TwitterOAuth(env('CONSUMER_KEY'), env('CONSUMER_SECRET'), env('ACCESS_TOKEN'), env('ACCESS_TOKEN_SECRET'));
 		$results = $connection->get('statuses/user_timeline', ['screen_name' => 'realDonaldTrump']);
 
