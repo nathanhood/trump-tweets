@@ -22,7 +22,7 @@ class TweetsController extends Controller
 
 			$existing = Tweet::where('twitter_id', $result->id)->first();
 
-			if (! $existing && $createdAt->isToday()) {
+			if (! $existing && $createdAt->gt(Carbon::yesterday())) {
 				$tweet = new Tweet();
 
 				$tweet->twitter_id = $result->id;
@@ -34,6 +34,6 @@ class TweetsController extends Controller
 			}
 		}
 
-		return response()->json(Tweet::where('created_at', '>=', Carbon::today())->get());
+		return response()->json(Tweet::where('created_at', '>', Carbon::yesterday())->get());
     }
 }
